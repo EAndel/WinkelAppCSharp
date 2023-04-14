@@ -1,0 +1,122 @@
+﻿<Window x:Class="WinkelApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vms="clr-namespace:WinkelApp.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="750" Width="1500" Background="GhostWhite">
+    <Window.DataContext>
+        <vms:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid Margin="50,10,50,32">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220*"/>
+            <ColumnDefinition Width="220*"/>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="220*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="300*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="517*"/>
+            <RowDefinition Height="120*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="All Auteurs" HorizontalAlignment="Center" VerticalAlignment="Center" Width="114" Height="36" FontWeight="Bold" FontSize="16"/>
+        <Label Content="Items made by Auteur" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="214" Height="36" FontWeight="Bold" FontSize="16"/>
+        <Label Content="All Items" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="88" Height="35" FontSize="16" FontWeight="Bold"/>
+
+        <StackPanel x:Name="AllAuteurs"
+                    Grid.Column="0" Margin="0,55,0,0" Grid.RowSpan="2">
+            <TextBox Name="AuteurSearch" Width="220" TextChanged="AuteurSearch_TextChanged"/>
+            
+            <ListBox Name="AuteurListBox"  ItemsSource="{Binding AllAuteurs}" DisplayMemberPath="Lastname" SelectedItem="{Binding SelectedAuteur}" Width="220"/>
+
+        </StackPanel>
+        <StackPanel x:Name="AllItems"
+                    Grid.Column="3" Margin="10,55,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <ListBox ItemsSource="{Binding AllItems}" DisplayMemberPath="Name" Width="220" SelectedItem="{Binding SelectedItem}"/>
+
+        </StackPanel>
+        <StackPanel x:Name="ItemsAuteur"
+                    Grid.Column="1" Margin="0,55,0,0" Grid.RowSpan="2">
+            <ListBox ItemsSource="{Binding SelectedAuteur.Items}" DisplayMemberPath="Name" Height="300
+                     " Width="220
+                     "/>
+
+        </StackPanel>
+
+        <!--Start Auteur buttons-->
+        <Button x:Name="AddAuteurBtn" Content="ADD AUTEUR" HorizontalAlignment="Left" Margin="9,82,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" FontFamily="Calibri" Foreground="GhostWhite" Height="35" Width="202" Command="{Binding AddAuteurClick}">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF369E58" Offset="1"/>
+                    <GradientStop Color="#FF42CB6F" Offset="0.835"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="EditAuteurBtn" Content="SAVE" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"  FontWeight="Bold" FontSize="16" FontFamily="Calibri" Foreground="GhostWhite" Height="34" Width="200" Command="{Binding UpdateClick}" Grid.Column="2">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFC7A037" Offset="1"/>
+                    <GradientStop Color="#FFFCCE54" Offset="0.835"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="DeleteAuteurBtn" Content="DELETE" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Calibri" FontSize="16" Foreground="GhostWhite" Margin="10,41,0,0" Height="34" Width="201" Command="{Binding RemoveAuteurClick}">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB43B47" Offset="1"/>
+                    <GradientStop Color="#FFED5564" Offset="0.835"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <!--End Autheur buttons-->
+
+        <!--Start Selected item buttons-->
+        <Button x:Name="DeleteSelectedItemBtn"   Content="DELETE" Grid.Column="5" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Foreground="GhostWhite" FontFamily="Calibri" FontWeight="Bold" FontSize="16" Height="34" Width="202" Command="{Binding RemoveItemClick}">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB43B47" Offset="1"/>
+                    <GradientStop Color="#FFED5564" Offset="0.835"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="CreateNewItemBtn"        Content="ADD ITEM" HorizontalAlignment="Center" Margin="0,82,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="GhostWhite" FontFamily="Calibri" FontWeight="Bold" FontSize="16"  Grid.Column="5" Height="35" Width="202" Command="{Binding AddItemClick}">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF369E58" Offset="1"/>
+                    <GradientStop Color="#FF42CB6F" Offset="0.835"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <!--End Selected Item buttons-->
+
+        <!--Start of Data Auteur-->
+        <Label Content="Data of Auteur" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="214" Height="36" FontWeight="Bold" FontSize="16"/>
+        <Label Content="Firstname:" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="214" Height="36" FontWeight="Bold" FontSize="16" Margin="10,10,0,0" Grid.Row="1"/>
+        <Label Content="Lastname:" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="214" Height="36" FontWeight="Bold" FontSize="16" Margin="10,78,0,0" Grid.Row="1"/>
+        <Label Content="Phonenumber:" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="214" Height="36" FontWeight="Bold" FontSize="16" Margin="10,165,0,0" Grid.Row="1"/>
+        <Label Content="Email:" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="214" Height="36" FontWeight="Bold" FontSize="16" Margin="10,0,0,0" Grid.Row="1"/>
+        <TextBox Grid.Column="2" HorizontalAlignment="Center" Height="27" Margin="0,51,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SelectedAuteur.Firstname}" VerticalAlignment="Top" Width="220" Name="AuteurFirstname"/>
+        <TextBox Grid.Column="2" HorizontalAlignment="Center" Height="27" Margin="0,114,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SelectedAuteur.Lastname}" VerticalAlignment="Top" Width="220" Name="AuteurLastname"/>
+        <TextBox Grid.Column="2" HorizontalAlignment="Center" Height="27" Margin="0,201,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SelectedAuteur.Phonenumber}" VerticalAlignment="Top" Width="220" Name="AuteurPhonenumber"/>
+        <TextBox Grid.Column="2" HorizontalAlignment="Center" Height="27" Margin="0,277,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SelectedAuteur.Email}" VerticalAlignment="Top" Width="220" Name="AuteurEmail"/>
+        <!--End of Data Auteur-->
+
+        <!--Start of Data Item-->
+        <Label Content="Data of Item" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="214" Height="36" FontWeight="Bold" FontSize="16"/>
+        <Label Content="Name:" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="214" Height="36" FontWeight="Bold" FontSize="16" Margin="10,10,0,0" Grid.Row="1"/>
+        <Label Content="Price:" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="214" Height="36" FontWeight="Bold" FontSize="16" Margin="13,56,0,0" Grid.Row="1"/>
+        <Label Content="Description:" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="214" Height="36" FontWeight="Bold" FontSize="16" Margin="13,128,0,0" Grid.Row="1"/>
+        <TextBox Grid.Column="5" HorizontalAlignment="Left" Height="27" Margin="103,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SelectedItem.Name}" VerticalAlignment="Top" Width="220" x:Name="ItemName"/>
+        <TextBox Grid.Column="5" HorizontalAlignment="Left" Height="27" Margin="103,65,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SelectedItem.Price}" VerticalAlignment="Top" Width="220" x:Name="ItemPrice"/>
+        <TextBox Grid.Column="5" HorizontalAlignment="Left" Height="310" Margin="13,169,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SelectedItem.Description}" VerticalAlignment="Top" Width="310" x:Name="ItemDescription"/>
+        <TextBlock Grid.Column="5" HorizontalAlignment="Left" Margin="26,484,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Before Clicking Add Item Select a Auteur!!!" VerticalAlignment="Top"/>
+        <!--Start of Data Item-->
+
+    </Grid>
+</Window>
