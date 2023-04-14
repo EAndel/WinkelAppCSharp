@@ -24,10 +24,5 @@ namespace WinkelApp
         {
             InitializeComponent();
         }
-
-        private void AuteurSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string input = AuteurSearch.Text;
-        }
     }
 }
