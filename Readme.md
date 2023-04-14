@@ -1,6 +1,6 @@
 ﻿Dit project is gemaakt door: Enno Andel
 
-In dit projet missen twee onderdelen jammer genoeg. De Filter en sort systemen voor de auteur en item listboxen.
+In dit project missen twee onderdelen jammer genoeg. De Filter en sort systemen voor de auteur en item listboxen.
 De reden waarom ik dit niet heb kunnen doen is aangezien ik niet in de gegeven tijd een goed oplossing had kunnen vinden.
 Maar ik hoor al je had 10 weken om dit project te makne. Jammer genoeg heb ik dit project alleen moeten doen en
 ongeveer drie weken geleden is mijn vader met spoed naar het ziekenhuis gegaan vanwege hartproblemen
