@@ -31,8 +31,6 @@
 
         <StackPanel x:Name="AllAuteurs"
                     Grid.Column="0" Margin="0,55,0,0" Grid.RowSpan="2">
-            <TextBox Name="AuteurSearch" Width="220" TextChanged="AuteurSearch_TextChanged"/>
-            
             <ListBox Name="AuteurListBox"  ItemsSource="{Binding AllAuteurs}" DisplayMemberPath="Lastname" SelectedItem="{Binding SelectedAuteur}" Width="220"/>
 
         </StackPanel>
